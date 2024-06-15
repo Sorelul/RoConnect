@@ -199,7 +199,11 @@
 
                 <!-- //! Firme preferate -->
                 <div class="tab-pane fade" id="companies" role="tabpanel" aria-labelledby="companies-tab">
-
+                    <h4>Firmele tale preferate</h4>
+                    <hr class="mt-2 mb-4" />
+                    <div class="d-flex">
+                        <b>Momentan nu ai adaugat nicio firma la favorite.</b>
+                    </div>
                 </div>
             </div>
         </div>
