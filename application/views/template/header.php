@@ -7,12 +7,15 @@
     <title><?= $title; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet" />
     <link href="/assets/theme/css/themes/lite-purple.min.css" rel="stylesheet" />
+    <link href="/assets/theme/css/plugins/bootstrap/bootstrap-grid.css" rel="stylesheet" />
     <link href="/assets/theme/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link href="/assets/theme/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/theme/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="/assets/theme/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="/assets/theme/vendor/main.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/select2.css">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -26,6 +29,7 @@
     <script src="/assets/theme/js/scripts/script.min.js"></script>
     <script src="/assets/theme/js/scripts/sidebar-horizontal.script.js"></script>
     <script src="/assets/theme/js/plugins/toastr.min.js"></script>
+
 
     <style>
         @media (max-width: 767px) {
@@ -142,7 +146,7 @@
                                 <div>
                                     <div>
                                         <label class="toggle" for="lista-firme">Listă firme</label>
-                                        <a href="">
+                                        <a href="/companii">
                                             <span class="material-symbols-outlined mr-2">
                                                 corporate_fare
                                             </span>

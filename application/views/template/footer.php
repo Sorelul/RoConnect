@@ -207,6 +207,10 @@
 <script src="/assets/theme/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/theme/vendor/main.js"></script>
 
+<!-- Select2 -->
+<script src="/assets/js/select2/select2.full.min.js"></script>
+
+
 </body>
 
 </html>
