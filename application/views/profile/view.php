@@ -75,7 +75,7 @@
                 <li class="nav-item"><a class="nav-link" id="friends-tab" data-toggle="tab" href="#friends" role="tab" aria-controls="friends" aria-selected="false">Securitate</a></li>
                 <li class="nav-item"><a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab" aria-controls="companies" aria-selected="false">Firme preferate</a></li>
             </ul>
-            <div class="tab-content" id="profileTabContent">
+            <div class="tab-content pb-0" id="profileTabContent">
                 <div class="tab-pane fade active show" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <h4>Informații personale</h4>
                     <hr class="mt-2 mb-4" />
@@ -164,7 +164,37 @@
 
                 <!-- //! Securitate cont -->
                 <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
-
+                    <h4>Securitatea contului tău</h4>
+                    <hr class="mt-2 mb-4" />
+                    <form class="row" id="user-security-form">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <p class="text-primary mb-1"><i class="i-Type-Pass text-16 mr-1"></i>Parola veche</p>
+                            <span>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" value="" placeholder="Vechea ta parolă.." name="old_password">
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <p class="text-primary mb-1"><i class="i-Type-Pass text-16 mr-1"></i>Parola nouă</p>
+                            <span>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" value="" placeholder="Noua ta parolă.." name="new_password">
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <p class="text-primary mb-1"><i class="i-Type-Pass text-16 mr-1"></i>Confirmă noua parolă</p>
+                            <span>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" value="" placeholder="Reintrodu noua parolă.." name="confirm_new_password">
+                                </div>
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center w-100 mt-2">
+                            <button class="btn btn-primary" type="submit">Schimbă parola</button>
+                        </div>
+                    </form>
                 </div>
 
                 <!-- //! Firme preferate -->
@@ -255,6 +285,39 @@
             var type = $('#btn-upload-modal').attr('data-id');
             console.log(type);
             upload_img(type);
+        });
+
+        $("#user-security-form").submit(function(e) {
+            e.preventDefault();
+
+            var new_password = $('input[name="new_password"]').val();
+            var confirm_new_password = $('input[name="confirm_new_password"]').val();
+
+            if (new_password != confirm_new_password) {
+                toastr.error('Parolele nu se potrivesc!', 'Uops!');
+                return;
+            }
+
+            var formData = new FormData(this);
+            $.ajax({
+                url: '/profile/update_password',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, 'Uops! Ceva nu a mers cum trebuie..')
+                    } else {
+                        toastr.success(response.message, 'Succes!');
+                        // empty fields 
+                        $('input[name="old_password"]').val('');
+                        $('input[name="new_password"]').val('');
+                        $('input[name="confirm_new_password"]').val('');
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
         });
 
     });

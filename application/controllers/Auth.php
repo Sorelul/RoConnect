@@ -63,14 +63,6 @@ class Auth extends CI_Controller
         }
     }
 
-    public function forgot_password()
-    {
-        if ($this->input->method() == 'post') {
-        } else {
-            $this->load->view('auth/forgot');
-        }
-    }
-
     public function register()
     {
         if ($this->input->method() == 'post') {
@@ -116,6 +108,14 @@ class Auth extends CI_Controller
             echo json_encode($response);
         } else {
             $this->load->view('auth/register');
+        }
+    }
+
+    public function forgot_password()
+    {
+        if ($this->input->method() == 'post') {
+        } else {
+            $this->load->view('auth/forgot');
         }
     }
 }

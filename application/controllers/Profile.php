@@ -70,6 +70,55 @@ class Profile extends CI_Controller
         echo json_encode($response);
     }
 
+    public function update_password()
+    {
+        $response = new stdClass();
+        $id_user = $this->session->userdata('user_informations')['id_user'];
+
+        if ($id_user) {
+            $postData = $this->input->post(NULL, TRUE);
+
+            foreach ($postData as $key => $value) {
+                if (empty($value)) {
+                    unset($postData[$key]);
+                }
+            }
+
+            $user = $this->Users->getUserInfo($id_user);
+
+            if ($user->user_password == md5(RO_CONNECT_SS . $this->input->post('old_password', TRUE))) {
+
+                $new_password = $this->input->post('new_password', TRUE);
+                $confirm_new_password = $this->input->post('confirm_new_password', TRUE);
+
+                if ($new_password == $confirm_new_password) {
+
+                    $res = $this->Users->updateUserInfo($id_user, array('user_password' => md5(RO_CONNECT_SS . $new_password)));
+
+                    if ($res > 0) {
+                        $response->error = false;
+                        $response->message = "Parola a fost actualizată cu succes!";
+                    } else {
+                        $response->error = true;
+                        $response->message = "Parola nu a fost actualizată!";
+                    }
+                } else {
+                    $response->error = true;
+                    $response->message = "Parolele nu se potrivesc!";
+                }
+            } else {
+                $response->error = true;
+                $response->message = "Parola veche nu este corectă!";
+            }
+        } else {
+            $response->error = true;
+            $response->message = "Utilizatorul nu este autentificat!";
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
 
     public function upload_image($type)
     {
