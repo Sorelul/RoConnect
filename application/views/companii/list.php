@@ -37,27 +37,45 @@
         <div class="col-lg-1 col-md-12 col-sm-12">
             <div class="d-flex justify-content-center align-items-center justify-content-lg-start align-items-lg-end h-100 w-100 pb-3">
                 <button type="submit" class="btn btn-outline-primary">Filtrează</button>
+                <a type="submit" class="btn btn-outline-dark ml-1" href="/companii/lista">
+                    <span class="material-symbols-outlined" style="font-size:19px;">
+                        cancel
+                    </span>
+                </a>
             </div>
         </div>
     </form>
 
 
     <!-- //! Companies -->
-    <div class="row mx-2 mt-4">
+    <div class="row mx-4 mt-4">
         <?php if (count($companies) > 0) :  ?>
             <?php foreach ($companies as $company) : ?>
                 <div class="col-lg-2 col-md-6 col-sm-12">
                     <div class="card card-profile-1 mb-4">
                         <div class="card-body text-center">
                             <div class="avatar mb-3" style="border-radius: unset !important;width:unset !important;">
-                                <img class="box-shadow-2" src="<?= base_url('/uploads/companies_logos/' . ($company->companies_logo ? $companies->companies_logo : 'default-logo.png')) ?>" alt="">
+                                <img class="box-shadow-2" src="<?= base_url('/uploads/companies_logos/' . ($company->companies_logo ? $companies->companies_logo : 'default-logo.png')) ?>" alt="" style="object-fit:contain !important; height:80px">
                             </div>
                             <h5 class="m-0"><b><?= $company->companies_name; ?></b></h5>
-                            <p class="mt-0 mb-0">CUI: <i><?= $company->companies_cui; ?></i> | <a href="/companii/lista&city=<?= $company->id_city ?>"><?= $company->cities_name; ?></a></p>
+                            <p class="mt-0 mb-0">CUI: <i><?= $company->companies_cui; ?></i> | <a href="/companii/lista?city=<?= $company->id_city ?>"><?= $company->cities_name; ?></a></p>
                             <p class="mt-0"><i><?= $company->companies_address; ?></i></p>
                             <p></p>
                             <button class="btn btn-primary btn-rounded">Vizualizează pagina</button>
-                            <div class="card-socials-simple mt-4"><a href=""><i class="i-Linkedin-2"></i></a><a href=""><i class="i-Facebook-2"></i></a><a href=""><i class="i-Twitter"></i></a></div>
+                            <div class="card-socials-simple mt-4">
+                                <?php if ($company->companies_link_linkedin) : ?>
+                                    <a target="_blank" href="<?= $company->companies_link_linkedin; ?>"><i class="i-Linkedin-2"></i></a>
+                                <?php endif; ?>
+                                <?php if ($company->companies_link_facebook) : ?>
+                                    <a target="_blank" href="<?= $company->companies_link_facebook; ?>"><i class="i-Facebook-2"></i></a>
+                                <?php endif; ?>
+                                <?php if ($company->companies_link_twitter) : ?>
+                                    <a target="_blank" href="<?= $company->companies_link_twitter; ?>"><i class="i-Twitter"></i></a>
+                                <?php endif; ?>
+                                <?php if ($company->companies_link_instagram) : ?>
+                                    <a target="_blank" href="<?= $company->companies_link_instagram; ?>"><i class="i-Instagram"></i></a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
