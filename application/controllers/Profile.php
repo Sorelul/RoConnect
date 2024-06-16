@@ -21,8 +21,11 @@ class Profile extends CI_Controller
         $user_info = $this->Users->getUserInfo($id_user);
         if ($user_info) {
 
+            $companies = $this->Users->getUserCompanies($id_user);
+
             $data = array(
-                'user_info' => $user_info
+                'user_info' => $user_info,
+                'companies' => $companies
             );
 
             $this->load->view('template/header', array('title' => $user_info->user_name));

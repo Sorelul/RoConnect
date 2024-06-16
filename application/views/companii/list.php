@@ -61,7 +61,7 @@
                             <p class="mt-0 mb-0">CUI: <i><?= $company->companies_cui; ?></i> | <a href="/companii/lista?city=<?= $company->id_city ?>"><?= $company->cities_name; ?></a></p>
                             <p class="mt-0"><i><?= $company->companies_address; ?></i></p>
                             <p></p>
-                            <button class="btn btn-primary btn-rounded">Vizualizează pagina</button>
+                            <a class="btn btn-primary btn-rounded" href="/companii/vizualizare/<?= $company->companies_cui; ?>">Vizualizează pagina</a>
                             <div class="card-socials-simple mt-4">
                                 <?php if ($company->companies_link_linkedin) : ?>
                                     <a target="_blank" href="<?= $company->companies_link_linkedin; ?>"><i class="i-Linkedin-2"></i></a>

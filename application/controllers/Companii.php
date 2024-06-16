@@ -59,6 +59,23 @@ class Companii extends CI_Controller
         $this->load->view('template/footer');
     }
 
+    public function vizualizare($companies_cui)
+    {
+        $company = $this->Companies->getCompanyByCUI($companies_cui);
+
+        if ($company) {
+            $data = array(
+                'company' => $company
+            );
+
+            $this->load->view('template/header', array('title' => $company->companies_name));
+            $this->load->view('companii/view', $data);
+            $this->load->view('template/footer');
+        } else {
+            redirect('companii/lista');
+        }
+    }
+
     //! ----------------------------------------------------------------------------
     //! ------------------------------ Methods -------------------------------------
     //! ----------------------------------------------------------------------------
@@ -148,7 +165,6 @@ class Companii extends CI_Controller
         http_response_code(200);
         echo json_encode($response);
     }
-
 
     //* Search (footer)
 

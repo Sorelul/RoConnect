@@ -37,6 +37,15 @@ class Users_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    function getUserCompanies($id_user)
+    {
+        $this->db->join('companies', 'companies.id_company = companies_admins.ca_id_user');
+        $this->db->join('companies_statuses', 'companies_statuses.id_company_status = companies.companies_status', 'left');
+        $this->db->join('cities', 'cities.id_city = companies.companies_city', 'left');
+        $this->db->where('ca_id_user', $id_user);
+        $result = $this->db->get('companies_admins');
+        return $result->result();
+    }
 
     function getAllUsers($status = null)
     {

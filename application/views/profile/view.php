@@ -74,6 +74,9 @@
                 <li class="nav-item"><a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">Informații</a></li>
                 <li class="nav-item"><a class="nav-link" id="friends-tab" data-toggle="tab" href="#friends" role="tab" aria-controls="friends" aria-selected="false">Securitate</a></li>
                 <li class="nav-item"><a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab" aria-controls="companies" aria-selected="false">Firme preferate</a></li>
+                <?php if (count($companies) > 0) : ?>
+                    <li class="nav-item"><a class="nav-link" id="my-companies-tab" data-toggle="tab" href="#my-companies" role="tab" aria-controls="my-companies" aria-selected="false">Firmele mele</a></li>
+                <?php endif; ?>
             </ul>
             <div class="tab-content pb-0" id="profileTabContent">
                 <div class="tab-pane fade active show" id="about" role="tabpanel" aria-labelledby="about-tab">
@@ -205,6 +208,39 @@
                         <b>Momentan nu ai adaugat nicio firma la favorite.</b>
                     </div>
                 </div>
+
+                <?php if (count($companies) > 0) : ?>
+                    <!-- //! Firmele mele -->
+                    <div class="tab-pane fade" id="my-companies" role="tabpanel" aria-labelledby="my-companies-tab">
+                        <h4>Firmele tale</h4>
+                        <hr class="mt-2 mb-4" />
+                        <div class="list-horizontal">
+                            <?php foreach ($companies as $company) : ?>
+                                <div class="list-item col-md-12 p-0">
+                                    <div class="card o-hidden flex-row mb-4 d-flex">
+                                        <div class="list-thumb d-flex py-4">
+                                            <img src="<?= base_url('/uploads/companies_logos/' . ($company->companies_logo ? $company->companies_logo : 'default-logo.png')) ?>" alt="Logo <?= $company->companies_name; ?>">
+                                        </div>
+                                        <div class="flex-grow-1 pl-2 d-flex">
+                                            <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center flex-lg-row">
+                                                <a href="/companii/vizualizare/<?= $company->companies_cui; ?>" class="w-40 w-sm-100">
+                                                    <div class="item-title"><b><?= $company->companies_name; ?></b></div>
+                                                </a>
+                                                <p class="m-0 text-muted text-small w-15 w-sm-100"><i><?= $company->companies_cui; ?></i></p>
+                                                <p class="m-0 text-muted text-small w-15 w-sm-100">
+                                                    <?= $company->cities_name; ?>(<i><?= $company->companies_address; ?></i>)
+                                                </p>
+                                                <p class="m-0 text-muted text-small w-15 w-sm-100">
+                                                    <span class="badge badge-primary p-2" style="background-color:<?= @$company->cs_color ? $company->cs_color : ""; ?>"><?= $company->cs_name; ?></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div><!-- end of main-content -->
