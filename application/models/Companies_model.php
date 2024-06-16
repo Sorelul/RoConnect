@@ -20,13 +20,6 @@ class Companies_model extends CI_Model
         return $result->result();
     }
 
-    function getCompanyByUser($companies_admin)
-    {
-        $this->db->where('companies_admin', $companies_admin);
-        $result = $this->db->get('companies', 1);
-        return $result->row();
-    }
-
     function getCompanyByCUI($companies_cui)
     {
         $this->db->where('companies_cui', $companies_cui);

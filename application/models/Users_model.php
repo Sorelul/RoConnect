@@ -19,7 +19,6 @@ class Users_model extends CI_Model
         } else {
             return false;
         }
-        $this->db->join("companies", "companies.companies_admin = users.id_user", "left");
         $result = $this->db->get('users', 1);
         return $result->row();
     }
@@ -44,7 +43,6 @@ class Users_model extends CI_Model
         if ($status != null) {
             $this->db->where('users.user_status', $status);
         }
-        $this->db->join("companies", "companies.companies_admin = users.id_user", "left");
         $result = $this->db->get('users');
         return $result->result();
     }
