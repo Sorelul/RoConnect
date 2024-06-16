@@ -29,7 +29,6 @@ class Auth extends CI_Controller
 
             if ($user_info) {
                 $this->load->model('Companies_model', 'Companies');
-                $company = $this->Companies->getCompanyByUser($user_info->id_user);
 
                 $sesdata = array(
                     'logged_in'       =>  TRUE,
@@ -41,8 +40,7 @@ class Auth extends CI_Controller
                     'user_background'   =>  $user_info->user_background,
                     'user_color'   =>  $user_info->user_color,
                     'user_status'   =>  $user_info->user_status,
-                    'user_admin'         => $user_info->user_is_admin,
-                    'user_company' => @$company->id_company ? $company->id_company : null,
+                    'user_admin'         => $user_info->user_is_admin
                 );
 
                 $this->session->set_userdata(array(

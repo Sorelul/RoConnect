@@ -16,6 +16,7 @@
     <link href="/assets/theme/vendor/main.css" rel="stylesheet">
     <!-- Select2 -->
     <link rel="stylesheet" type="text/css" href="/assets/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -155,6 +156,24 @@
                                     </div>
                                 </div>
                             </li>
+
+                            <?php if ($this->session->userdata('user_informations')["logged_in"] == false) :  ?>
+                                <li class="ml-auto">
+                                    <div>
+                                        <div>
+                                            <label class="toggle" for="adauga-firma">Listă firme</label>
+                                            <a href="/companii/adaugare">
+                                                <span class="material-symbols-outlined mr-2 text-info">
+                                                    domain_add
+                                                </span>
+                                                <span class="text-info">
+                                                    Ai o firmă și vrei să o adaugi?
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endif; ?>
                             <!--end-doc  -->
                             </li>
                         </ul>

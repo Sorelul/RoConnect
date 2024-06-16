@@ -6,7 +6,6 @@ class Users_model extends CI_Model
     {
         $this->db->where('user_email', $user_email);
         $this->db->where('user_password', $user_password);
-        $this->db->join("companies", "companies.companies_admin = users.id_user", "left");
         $result = $this->db->get('users', 1);
         return $result->row();
     }
