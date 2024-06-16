@@ -10,6 +10,10 @@ class Companii extends CI_Controller
         $this->load->model('Companies_model', "Companies");
     }
 
+    //! ----------------------------------------------------------------------------
+    //! ------------------------------ Views ---------------------------------------
+    //! ----------------------------------------------------------------------------
+
     public function index()
     {
         redirect('companii/lista');
@@ -44,5 +48,23 @@ class Companii extends CI_Controller
         $this->load->view('template/header', array('title' => "Listă companii"));
         $this->load->view('companii/list', $data);
         $this->load->view('template/footer');
+    }
+
+    //! ----------------------------------------------------------------------------
+    //! ------------------------------ Methods -------------------------------------
+    //! ----------------------------------------------------------------------------
+
+    //* Search (footer)
+
+    public function search()
+    {
+        $search = $this->input->post('search');
+        $companies = $this->Companies->getAllCompanies(null, $search);
+
+        $data = array(
+            'companies' => $companies
+        );
+
+        $this->load->view('template/loaders/search_content', $data);
     }
 }

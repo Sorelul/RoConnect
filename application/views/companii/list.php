@@ -55,7 +55,7 @@
                     <div class="card card-profile-1 mb-4">
                         <div class="card-body text-center">
                             <div class="avatar mb-3" style="border-radius: unset !important;width:unset !important;">
-                                <img class="box-shadow-2" src="<?= base_url('/uploads/companies_logos/' . ($company->companies_logo ? $companies->companies_logo : 'default-logo.png')) ?>" alt="" style="object-fit:contain !important; height:80px">
+                                <img class="box-shadow-2" src="<?= base_url('/uploads/companies_logos/' . ($company->companies_logo ? $company->companies_logo : 'default-logo.png')) ?>" alt="" style="object-fit:contain !important; height:80px">
                             </div>
                             <h5 class="m-0"><b><?= $company->companies_name; ?></b></h5>
                             <p class="mt-0 mb-0">CUI: <i><?= $company->companies_cui; ?></i> | <a href="/companii/lista?city=<?= $company->id_city ?>"><?= $company->cities_name; ?></a></p>
